@@ -11,7 +11,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var categoryPickerOptions = [String]()
     var categorySelected = ""
-    var currentCategory = ""
+    var currentCategory = "Beef"
 
     @IBOutlet weak var categoryPicker: UIPickerView!
     
@@ -21,6 +21,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
+        categoryPicker?.selectRow(1, inComponent: 0, animated: true)
         
         let url = URL(string: "https://www.themealdb.com/api/json/v1/1/categories.php")!
         let dataTask = URLSession.shared.dataTask(with: url) { data, _, error in
