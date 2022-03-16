@@ -11,12 +11,13 @@ class MealViewController: UIViewController, MealManagerDelegate {
     
     @IBOutlet weak var mealList: UITableViewCell!
     var mealManager = MealManager()
+    var category = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mealManager.delegate = self
-        
+        print(category)
         }
     
     func didUpdateMeal(_ mealManager: MealManager, meal: MealModel) {

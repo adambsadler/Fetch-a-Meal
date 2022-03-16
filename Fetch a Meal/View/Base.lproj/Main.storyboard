@@ -43,8 +43,8 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Choose Category"/>
                                         <connections>
-                                            <action selector="chooseMealPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qDs-7S-Y7w"/>
-                                            <segue destination="QXh-ri-9g6" kind="show" identifier="ToMeals" id="EVM-Vv-tma"/>
+                                            <action selector="categorySelectedPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CWi-TU-YBJ"/>
+                                            <segue destination="QXh-ri-9g6" kind="presentation" identifier="ToMeals" id="EVM-Vv-tma"/>
                                         </connections>
                                     </button>
                                 </subviews>

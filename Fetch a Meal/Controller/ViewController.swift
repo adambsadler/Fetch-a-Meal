@@ -10,6 +10,8 @@ import UIKit
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var categoryPickerOptions = [String]()
+    var categorySelected = ""
+    var currentCategory = ""
 
     @IBOutlet weak var categoryPicker: UIPickerView!
     
@@ -36,7 +38,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         dataTask.resume()
     }
 
-    @IBAction func chooseCategoryPressed(_ sender: UIButton) {
+    
+    @IBAction func categorySelectedPressed(_ sender: UIButton) {
+        //print(categorySelected)
+        self.categorySelected = currentCategory
+        performSegue(withIdentifier: "ToMeals", sender: self)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currentCategory = categoryPickerOptions[row]
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -50,5 +60,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return "\(categoryPickerOptions[row])"
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! MealViewController
+        vc.category = self.categorySelected
+    }
 }
 
