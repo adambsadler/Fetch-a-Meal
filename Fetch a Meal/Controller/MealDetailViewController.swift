@@ -23,6 +23,7 @@ class MealDetailViewController: UIViewController, MealManagerDelegate {
         ingredientList.dataSource = self
         
         mealManager.getMealByName(mealName: self.mealName)
+        
     }
 
     func didUpdateMeal(_ mealManager: MealManager, meal: MealModel) {
@@ -30,6 +31,7 @@ class MealDetailViewController: UIViewController, MealManagerDelegate {
             self.mealNameLabel.text = meal.name
             self.mealInstructionsLabel.text = meal.instructions
             self.ingredients.append(contentsOf: meal.ingredients)
+            self.ingredientList.reloadData()
         }
     }
     

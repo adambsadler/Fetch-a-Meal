@@ -19,7 +19,6 @@ class MealViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mealList.dataSource = self
-        mealList.delegate = self
         
         categoryLabel.text = category
         
@@ -51,7 +50,7 @@ class MealViewController: UIViewController {
     }
 }
 
-extension MealViewController: UITableViewDataSource, UITableViewDelegate {
+extension MealViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return meals.count
     }
