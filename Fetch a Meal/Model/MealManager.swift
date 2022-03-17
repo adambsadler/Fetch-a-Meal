@@ -13,12 +13,12 @@ protocol MealManagerDelegate {
 }
 
 struct MealManager {
-    let mealURL = "https://www.themealdb.com/api/json/v1/1/"
     
     var delegate: MealManagerDelegate?
     
-    func getMealsByCategory(categoryName: String) {
-        let urlString = "filter.php?c=\(categoryName)"
+    func getMealByName(mealName: String) {
+        let updatedMealName = mealName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let urlString = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(updatedMealName)"
         performRequest(with: urlString)
     }
     
@@ -53,12 +53,12 @@ struct MealManager {
             var actualIngredients = [String]()
             var actualMeasurements = [String]()
             for ingredient in ingredients {
-                if ingredient != "" || ingredient != nil {
+                if ingredient != "" && ingredient != nil {
                     actualIngredients.append(ingredient!)
                 }
             }
             for measurement in measurements {
-                if measurement != "" || measurement != nil {
+                if measurement != "" && measurement != nil {
                     actualMeasurements.append(measurement!)
                 }
             }
@@ -66,7 +66,7 @@ struct MealManager {
             let measuredIngredients = combinedArrays.map {
                 $0.1 + " " + $0.0
             }
-            let meal = MealModel(name: name, instructions: instructions!, ingredients: measuredIngredients)
+            let meal = MealModel(name: name, instructions: instructions, ingredients: measuredIngredients)
             return meal
         } catch {
             self.delegate?.didFailWithError(error: error)

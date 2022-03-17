@@ -41,7 +41,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
     
     @IBAction func categorySelectedPressed(_ sender: UIButton) {
-        //print(categorySelected)
         self.categorySelected = currentCategory
         performSegue(withIdentifier: "ToMeals", sender: self)
     }
@@ -62,8 +61,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! MealViewController
-        vc.category = self.categorySelected
+        if segue.identifier == "ToMeals" {
+            if let vc = segue.destination as? MealViewController {
+                vc.category = self.categorySelected
+            }
+        }
     }
 }
 

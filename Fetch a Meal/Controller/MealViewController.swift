@@ -7,20 +7,19 @@
 
 import UIKit
 
-class MealViewController: UIViewController, MealManagerDelegate {
+class MealViewController: UIViewController {
     
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var mealList: UITableView!
     
-    
-    var mealManager = MealManager()
     var meals = [String]()
     var category = ""
+    var selectedMeal = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mealList.dataSource = self
-        mealManager.delegate = self
+        mealList.delegate = self
         
         categoryLabel.text = category
         
@@ -32,7 +31,6 @@ class MealViewController: UIViewController, MealManagerDelegate {
                 let mealNames = result.meals.map{$0.strMeal}.sorted(by: <)
                 self.meals.append(contentsOf: mealNames)
                 DispatchQueue.main.async {
-                    // populate table view
                     self.mealList.reloadData()
                 }
             } catch {
@@ -42,16 +40,18 @@ class MealViewController: UIViewController, MealManagerDelegate {
         dataTask.resume()
     }
     
-    func didUpdateMeal(_ mealManager: MealManager, meal: MealModel) {
-        
-    }
-    
-    func didFailWithError(error: Error) {
-        print(error)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let indexPath = self.mealList.indexPathForSelectedRow {
+            self.selectedMeal = meals[indexPath.row]
+        }
+        if segue.identifier == "ToMealDetail" {
+            let vc = segue.destination as! MealDetailViewController
+            vc.mealName = self.selectedMeal
+        }
     }
 }
 
-extension MealViewController: UITableViewDataSource {
+extension MealViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return meals.count
     }
