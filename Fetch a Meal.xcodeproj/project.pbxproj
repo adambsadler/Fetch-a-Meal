@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85957EFE27E8C234009FA664 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85957EFD27E8C234009FA664 /* CategoryManager.swift */; };
+		85957F0227E8CC6A009FA664 /* MealListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85957F0127E8CC6A009FA664 /* MealListManager.swift */; };
 		85B287A027E0F8BB008962E5 /* MealManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B2879F27E0F8BB008962E5 /* MealManager.swift */; };
 		85B287A227E10D71008962E5 /* MealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B287A127E10D71008962E5 /* MealData.swift */; };
 		85B287A627E11D76008962E5 /* MealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B287A527E11D76008962E5 /* MealModel.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		85957EFD27E8C234009FA664 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
+		85957F0127E8CC6A009FA664 /* MealListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListManager.swift; sourceTree = "<group>"; };
 		85B2879F27E0F8BB008962E5 /* MealManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealManager.swift; sourceTree = "<group>"; };
 		85B287A127E10D71008962E5 /* MealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealData.swift; sourceTree = "<group>"; };
 		85B287A527E11D76008962E5 /* MealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModel.swift; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 				85B287A527E11D76008962E5 /* MealModel.swift */,
 				85B287B127E144E7008962E5 /* Category.swift */,
 				85E22C9327E24DAD005DC80B /* MealByCategory.swift */,
+				85957EFD27E8C234009FA664 /* CategoryManager.swift */,
+				85957F0127E8CC6A009FA664 /* MealListManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,6 +194,8 @@
 				85E7813427E0F571004C1088 /* AppDelegate.swift in Sources */,
 				85B287AC27E12E46008962E5 /* MealViewController.swift in Sources */,
 				85B287A027E0F8BB008962E5 /* MealManager.swift in Sources */,
+				85957EFE27E8C234009FA664 /* CategoryManager.swift in Sources */,
+				85957F0227E8CC6A009FA664 /* MealListManager.swift in Sources */,
 				85B287A627E11D76008962E5 /* MealModel.swift in Sources */,
 				85E7813627E0F571004C1088 /* SceneDelegate.swift in Sources */,
 				85B287B227E144E7008962E5 /* Category.swift in Sources */,

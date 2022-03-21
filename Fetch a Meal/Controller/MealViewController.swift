@@ -7,36 +7,38 @@
 
 import UIKit
 
-class MealViewController: UIViewController {
+class MealViewController: UIViewController, MealListManagerDelegate {
     
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var mealList: UITableView!
     
+    var mealListManager = MealListManager()
     var meals = [String]()
     var category = ""
     var selectedMeal = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mealListManager.delegate = self
         mealList.dataSource = self
         
         categoryLabel.text = category
         
-        let url = URL(string: "https://www.themealdb.com/api/json/v1/1/filter.php?c=\(category)")!
-        let dataTask = URLSession.shared.dataTask(with: url) { data, _, error in
-            if let error = error { print(error); return }
-            do {
-                let result = try JSONDecoder().decode(MealByCategory.self, from: data!)
-                let mealNames = result.meals.map{$0.strMeal}.sorted(by: <)
-                self.meals.append(contentsOf: mealNames)
-                DispatchQueue.main.async {
-                    self.mealList.reloadData()
-                }
-            } catch {
-                print(error)
-            }
+        mealListManager.getMealByCategory(categoryName: category)
+        
+    }
+    
+    func didUpdateMealList(_ mealListManager: MealListManager, mealList: MealByCategory) {
+        let mealNames = mealList.meals.map{$0.strMeal}.sorted(by: <)
+        self.meals.append(contentsOf: mealNames)
+        DispatchQueue.main.async {
+            self.mealList.reloadData()
         }
-        dataTask.resume()
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
